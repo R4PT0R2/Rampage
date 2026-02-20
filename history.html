@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>История клана RAMPAGE</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Фон с красными частицами */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(circle at top, #3b0000 0, #050509 55%, #000 100%);
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 50, 50, 0.8);
+      border-radius: 50%;
+      animation: float 6s infinite linear;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    h1 {
+      font-size: 36px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #ff3b3b;
+      text-shadow: 0 0 18px rgba(255, 59, 59, 0.8);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #ff7b7b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 20px;
+      border: 1px solid #ff3b3b;
+      border-radius: 6px;
+      color: #ff3b3b;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    a.back:hover {
+      background: #ff3b3b;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="particles" id="particles"></div>
+
+  <h1>История клана RAMPAGE</h1>
+
+  <p>
+    Клан <strong>RAMPAGE</strong> появился как объединение игроков, которые устали от хаоса в пабликах
+    и решили создать команду, где каждый знает своё место и играет на победу.
+  </p>
+
+  <p>
+    Первые участники собрались вокруг лидера — <strong>RAPTOR</strong>.  
+    Идея была простой: создать команду, которая играет агрессивно, уверенно и всегда давит соперника.
+  </p>
+
+  <h2>Первые игры</h2>
+  <p>
+    RAMPAGE начинал как небольшой стак, но быстро стал привлекать сильных игроков.
+    Команда выделялась стилем: ранние ганги, контроль карты, постоянное давление.
+  </p>
+
+  <h2>Рост и развитие</h2>
+  <p>
+    Со временем клан стал участвовать в турнирах, кастомных лигах и тренировках.
+    Появились роли, дисциплина, анализ матчей и чёткая структура.
+  </p>
+
+  <h2>Сегодня</h2>
+  <p>
+    Сейчас RAMPAGE — это не просто команда.  
+    Это стиль игры. Это имя, которое знают.  
+    Это клан, который идёт только вперёд.
+  </p>
+
+  <a class="back" href="index.html">← Назад на главную</a>
+
+  <script>
+    // Генерация частиц
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 80; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = Math.random() * 100 + 'vh';
+      p.style.animationDuration = 4 + Math.random() * 6 + 's';
+      p.style.opacity = Math.random();
+      container.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
