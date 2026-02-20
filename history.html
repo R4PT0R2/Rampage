@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>История клана RAMPAGE</title>
+  <meta charset="UTF-8" />
+  <title>История — RAMPAGE Clan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 40px;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #3b0000 0, #050509 55%, #000 100%);
+      color: #f5f5f5;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* Фон с красными частицами */
+    /* Частицы */
     .particles {
       position: fixed;
       top: 0;
@@ -24,9 +22,7 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      background: radial-gradient(circle at top, #3b0000 0, #050509 55%, #000 100%);
     }
-
     .particle {
       position: absolute;
       width: 4px;
@@ -35,49 +31,141 @@
       border-radius: 50%;
       animation: float 6s infinite linear;
     }
-
     @keyframes float {
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-120vh); opacity: 0; }
     }
 
+    header {
+      padding: 24px 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      box-shadow: 0 0 18px rgba(255, 59, 59, 0.7);
+    }
+    .logo-text {
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    nav a { color: #fff; opacity: 0.8; text-decoration: none; }
+    nav a:hover { opacity: 1; }
+
+    main {
+      padding: 40px 8vw 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Декоративный фон (2.png) */
+    main::before {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: 40px;
+      width: 420px;
+      height: 420px;
+      background: url("assets/2.png") no-repeat center/contain;
+      opacity: 0.12;
+      filter: drop-shadow(0 0 20px rgba(255,0,0,0.4));
+      pointer-events: none;
+    }
+
     h1 {
-      font-size: 36px;
+      font-size: 32px;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      color: #ff3b3b;
-      text-shadow: 0 0 18px rgba(255, 59, 59, 0.8);
+      letter-spacing: 0.18em;
       margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-top: 30px;
-      color: #ff7b7b;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    p {
-      font-size: 16px;
-      color: #ddd;
-    }
-
-    a.back {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 10px 20px;
-      border: 1px solid #ff3b3b;
-      border-radius: 6px;
       color: #ff3b3b;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      text-shadow: 0 0 18px rgba(255, 59, 59, 0.7);
     }
 
-    a.back:hover {
+    .timeline {
+      margin-top: 20px;
+      border-left: 2px solid rgba(255, 59, 59, 0.4);
+      padding-left: 20px;
+    }
+
+    .event {
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
       background: #ff3b3b;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 59, 59, 0.8);
+    }
+
+    .event h3 {
+      font-size: 16px;
+      color: #ff7b7b;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .event p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #d0d0d0;
+      max-width: 720px;
+    }
+
+    footer {
+      padding: 26px 8vw 32px;
+      font-size: 11px;
+      color: #888;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    /* Музыка */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      background: #ff3b3b;
+      border: none;
+      border-radius: 6px;
       color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+      z-index: 20;
     }
   </style>
 </head>
@@ -85,41 +173,70 @@
 
   <div class="particles" id="particles"></div>
 
-  <h1>История клана RAMPAGE</h1>
+  <header>
+    <div class="logo">
+      <img src="assets/1.png" alt="logo">
+      <div class="logo-text">RAMPAGE CLAN</div>
+    </div>
 
-  <p>
-    Клан <strong>RAMPAGE</strong> появился как объединение игроков, которые устали от хаоса в пабликах
-    и решили создать команду, где каждый знает своё место и играет на победу.
-  </p>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О клане</a>
+      <a href="history.html">История</a>
+      <a href="rules.html">Правила</a>
+    </nav>
+  </header>
 
-  <p>
-    Первые участники собрались вокруг лидера — <strong>RAPTOR</strong>.  
-    Идея была простой: создать команду, которая играет агрессивно, уверенно и всегда давит соперника.
-  </p>
+  <main>
+    <h1>История клана RAMPAGE</h1>
 
-  <h2>Первые игры</h2>
-  <p>
-    RAMPAGE начинал как небольшой стак, но быстро стал привлекать сильных игроков.
-    Команда выделялась стилем: ранние ганги, контроль карты, постоянное давление.
-  </p>
+    <div class="timeline">
 
-  <h2>Рост и развитие</h2>
-  <p>
-    Со временем клан стал участвовать в турнирах, кастомных лигах и тренировках.
-    Появились роли, дисциплина, анализ матчей и чёткая структура.
-  </p>
+      <div class="event">
+        <h3>2023 — Зарождение идеи</h3>
+        <p>
+          Всё началось с небольшой группы игроков, которые устали от хаоса пабов.
+          Мы хотели создать команду, где каждый играет на победу, а не ради цифр.
+        </p>
+      </div>
 
-  <h2>Сегодня</h2>
-  <p>
-    Сейчас RAMPAGE — это не просто команда.  
-    Это стиль игры. Это имя, которое знают.  
-    Это клан, который идёт только вперёд.
-  </p>
+      <div class="event">
+        <h3>2024 — Первые победы</h3>
+        <p>
+          Мы начали участвовать в локальных лигах и быстро заявили о себе.
+          Агрессивный стиль игры стал нашей визитной карточкой.
+        </p>
+      </div>
 
-  <a class="back" href="index.html">← Назад на главную</a>
+      <div class="event">
+        <h3>2025 — Формирование ядра</h3>
+        <p>
+          Появились постоянные игроки, капитан, аналитика матчей и дисциплина.
+          RAMPAGE стал не просто командой — а боевой машиной.
+        </p>
+      </div>
+
+      <div class="event">
+        <h3>2026 — Новый этап</h3>
+        <p>
+          Мы продолжаем расти, усиливаться и расширять состав.
+          Наша цель — доминировать в каждой игре, в каждом турнире.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    © RAMPAGE Clan · Dota 2 · «Мы не играем — мы уничтожаем»
+  </footer>
+
+  <button class="music-btn" onclick="toggleMusic()">🎵 Музыка</button>
+  <audio id="bgm" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    // Генерация частиц
     const container = document.getElementById('particles');
     for (let i = 0; i < 80; i++) {
       const p = document.createElement('div');
@@ -129,6 +246,18 @@
       p.style.animationDuration = 4 + Math.random() * 6 + 's';
       p.style.opacity = Math.random();
       container.appendChild(p);
+    }
+
+    let playing = false;
+    function toggleMusic() {
+      const audio = document.getElementById("bgm");
+      if (!playing) {
+        audio.play();
+        playing = true;
+      } else {
+        audio.pause();
+        playing = false;
+      }
     }
   </script>
 

@@ -1,84 +1,236 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>О клане RAMPAGE</title>
+  <meta charset="UTF-8" />
+  <title>О клане — RAMPAGE Clan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 40px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #3b0000 0, #050509 55%, #000 100%);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
+      color: #f5f5f5;
+      overflow-x: hidden;
     }
-    h1 {
-      font-size: 36px;
+
+    /* Частицы */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 50, 50, 0.8);
+      border-radius: 50%;
+      animation: float 6s infinite linear;
+    }
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    header {
+      padding: 24px 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      box-shadow: 0 0 18px rgba(255, 59, 59, 0.7);
+    }
+    .logo-text {
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 4px;
+      letter-spacing: 0.12em;
+    }
+    nav a { color: #fff; opacity: 0.8; text-decoration: none; }
+    nav a:hover { opacity: 1; }
+
+    main {
+      padding: 40px 8vw 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Декоративный фон (2.png) */
+    main::before {
+      content: "";
+      position: absolute;
+      left: -60px;
+      top: 40px;
+      width: 420px;
+      height: 420px;
+      background: url("assets/2.png") no-repeat center/contain;
+      opacity: 0.12;
+      filter: drop-shadow(0 0 20px rgba(255,0,0,0.4));
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 20px;
       color: #ff3b3b;
-      text-shadow: 0 0 18px rgba(255, 59, 59, 0.8);
+      text-shadow: 0 0 18px rgba(255, 59, 59, 0.7);
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #d0d0d0;
+      max-width: 720px;
       margin-bottom: 20px;
     }
-    h2 {
-      margin-top: 30px;
-      color: #ff7b7b;
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .pill {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 0.16em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f0f0f0;
+      background: rgba(0, 0, 0, 0.5);
     }
-    p, li {
-      font-size: 16px;
-      color: #ddd;
-    }
-    ul {
-      margin-top: 10px;
-    }
-    a.back {
-      display: inline-block;
+
+    footer {
+      padding: 26px 8vw 32px;
+      font-size: 11px;
+      color: #888;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       margin-top: 40px;
-      padding: 10px 20px;
-      border: 1px solid #ff3b3b;
-      border-radius: 6px;
-      color: #ff3b3b;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      text-align: center;
     }
-    a.back:hover {
+
+    /* Музыка */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 20px;
       background: #ff3b3b;
+      border: none;
+      border-radius: 6px;
       color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+      z-index: 20;
     }
   </style>
 </head>
 <body>
 
-  <h1>О клане RAMPAGE</h1>
+  <div class="particles" id="particles"></div>
 
-  <p>
-    Клан <strong>RAMPAGE</strong> — это команда игроков, которые играют агрессивно, уверенно и всегда идут до конца.
-    Мы ценим дисциплину, командную работу и желание побеждать. Каждый участник — часть боевой машины,
-    которая давит соперников с первых минут.
-  </p>
+  <header>
+    <div class="logo">
+      <img src="assets/1.png" alt="logo">
+      <div class="logo-text">RAMPAGE CLAN</div>
+    </div>
 
-  <h2>Наш стиль игры</h2>
-  <ul>
-    <li>Агрессия с лайна</li>
-    <li>Жёсткий контроль карты</li>
-    <li>Слаженные тимфайты</li>
-    <li>Чёткая коммуникация</li>
-    <li>Анализ матчей и постоянный рост</li>
-  </ul>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О клане</a>
+      <a href="history.html">История</a>
+      <a href="rules.html">Правила</a>
+    </nav>
+  </header>
 
-  <h2>Лидер клана</h2>
-  <p><strong>RAPTOR</strong></p>
+  <main>
+    <h1>О клане RAMPAGE</h1>
 
-  <h2>Связь</h2>
-  <p>
-    Discord: <a href="https://discord.gg/NWwuZRw7QM" style="color:#ff3b3b;" target="_blank">discord.gg/NWwuZRw7QM</a>
-  </p>
+    <p>
+      <strong>RAMPAGE</strong> — это клан, созданный для тех, кто играет не ради цифр,
+      а ради доминирования. Мы ценим дисциплину, коммуникацию и умение держать удар.
+      Каждый участник — часть боевой машины, которая движется только вперёд.
+    </p>
 
-  <a class="back" href="index.html">← Назад на главную</a>
+    <p>
+      Мы не собираем случайных игроков. В RAMPAGE попадают те, кто готов работать над собой,
+      анализировать ошибки и играть на победу. Мы уважаем друг друга, но не щадим врагов.
+    </p>
+
+    <div class="pill-row">
+      <div class="pill">Командная игра</div>
+      <div class="pill">Голосовая связь</div>
+      <div class="pill">Анализ матчей</div>
+      <div class="pill">Турниры и лиги</div>
+      <div class="pill">Жёсткая дисциплина</div>
+    </div>
+  </main>
+
+  <footer>
+    © RAMPAGE Clan · Dota 2 · «Мы не играем — мы уничтожаем»
+  </footer>
+
+  <button class="music-btn" onclick="toggleMusic()">🎵 Музыка</button>
+  <audio id="bgm" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 80; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = Math.random() * 100 + 'vh';
+      p.style.animationDuration = 4 + Math.random() * 6 + 's';
+      p.style.opacity = Math.random();
+      container.appendChild(p);
+    }
+
+    let playing = false;
+    function toggleMusic() {
+      const audio = document.getElementById("bgm");
+      if (!playing) {
+        audio.play();
+        playing = true;
+      } else {
+        audio.pause();
+        playing = false;
+      }
+    }
+  </script>
 
 </body>
 </html>
